@@ -5,7 +5,18 @@ def test_root_deve_retornar_ok_e_ola_mundo(client):
     response = client.get('/')  # Act (ação) -> literalmente o teste
 
     assert response.status_code == HTTPStatus.OK  # Assert
-    assert response.json() == {'message': 'Olá Mundo!'}
+    assert (
+        response.text
+        == """
+    <html>
+      <head>
+        <title> Nosso olá mundo! </title>
+      </head>
+      <body>
+        <h1> Olá Mundo! </h1>
+      </body>
+    </html>"""
+    )
 
 
 def test_crate_user(client):
